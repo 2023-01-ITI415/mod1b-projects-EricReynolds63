@@ -20,4 +20,5 @@ public class ScoreCounter : MonoBehaviour
     {
         uiText.text = score.ToString("#,0");
     }
+
 }

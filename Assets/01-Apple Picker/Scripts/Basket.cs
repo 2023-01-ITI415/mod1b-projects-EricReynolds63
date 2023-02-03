@@ -29,7 +29,11 @@ public class Basket : MonoBehaviour
         GameObject collidedWith = coll.gameObject;
         if (collidedWith.CompareTag("Apple")) {
             Destroy(collidedWith);
-            scoreCounter.score += 100;
+            if (collidedWith.GetComponent<Apple>().points == -27) {
+                scoreCounter.score = scoreCounter.score - (scoreCounter.score / 2);
+            } else {
+                scoreCounter.score += collidedWith.GetComponent<Apple>().points;
+            }
             HighScore.TRY_SET_HIGH_SCORE(scoreCounter.score);
         }
     }
