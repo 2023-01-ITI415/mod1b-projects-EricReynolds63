@@ -50,6 +50,8 @@ public class MissionDemolition : MonoBehaviour
 
 		mode = GameMode.playing;
 
+		FollowCam.SWITCH_VIEW( FollowCam.eView.both );
+
 	}
 
     // Start is called before the first frame update
@@ -78,6 +80,7 @@ public class MissionDemolition : MonoBehaviour
 
 		if ( (mode == GameMode.playing) && (Goal.goalMet) ) {
 			mode = GameMode.LevelEnd;
+			FollowCam.SWITCH_VIEW(FollowCam.eView.both);
 			Invoke("NextLevel", 2f);
 		}
     }

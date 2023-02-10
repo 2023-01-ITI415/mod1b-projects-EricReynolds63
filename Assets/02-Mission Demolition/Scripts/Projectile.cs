@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 {
     const int LOOKBACK_COUNT = 10;
 	static List<Projectile> PROJECTILES = new List<Projectile>();
+	public bool tracer = false;
 
 	[SerializeField]
     private bool _awake = true;
@@ -48,6 +49,11 @@ public class Projectile : MonoBehaviour
             awake = false;
             rigid.Sleep();
         }
+
+		if (tracer && (transform.position.y <= -12)) {
+			awake = false;
+			rigid.Sleep();
+		}
     }
 
 	private void OnDestroy()

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
-    [Header("Inscribed")]
+	static private Slingshot S;
+	public enum Ammo { cannonball, tracer }
+
+	[Header("Inscribed")]
     public GameObject projectilePrefab;
-    public float velocityMult = 10f;
+	public GameObject tracerPrefab;
+	public float velocityMult = 10f;
     public GameObject projLinePrefab;
 
     [Header("Dynamic")]
@@ -14,8 +18,22 @@ public class Slingshot : MonoBehaviour
     public Vector3 launchPos;
     public GameObject projectile;
     public bool aimingMode;
+	public Ammo type = Ammo.cannonball;
 
-    void Awake()
+	static public void CHANGE_AMMO( Ammo changeTo) {
+			S.type = changeTo;
+	}
+
+	static public void CHANGE_AMMO()
+	{
+		if (S.type == Ammo.cannonball){
+			S.type = Ammo.tracer;
+		} else {
+			S.type = Ammo.cannonball;
+		}
+	}
+
+	void Awake()
     {
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
@@ -38,12 +56,22 @@ public class Slingshot : MonoBehaviour
     void OnMouseDown()
     {
         aimingMode = true;
-        projectile = Instantiate(projectilePrefab) as GameObject;
+		if (type == Ammo.cannonball) {
+			projectile = Instantiate(projectilePrefab) as GameObject;
+		} else {
+			projectile = Instantiate(tracerPrefab) as GameObject;
+			projectile.GetComponent<Projectile>().tracer = true;
+		}
         projectile.transform.position = launchPos;
         projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    void Update()
+	void Start()
+	{
+		S = this;
+	}
+
+	void Update()
     {
         if (!aimingMode) { return; }
 
@@ -66,10 +94,13 @@ public class Slingshot : MonoBehaviour
             projRB.isKinematic = false;
             projRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
             projRB.velocity = -mouseDelta * velocityMult;
-            FollowCam.POI = projectile;
+			FollowCam.SWITCH_VIEW(FollowCam.eView.slingshot);
+			FollowCam.POI = projectile;
             Instantiate<GameObject>(projLinePrefab, projectile.transform);
             projectile = null;
-			MissionDemolition.SHOTS_FIRED();
+			if (type == Ammo.cannonball) {
+				MissionDemolition.SHOTS_FIRED();
+			}
         }
 
 

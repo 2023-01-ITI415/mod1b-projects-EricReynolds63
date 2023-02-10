@@ -10,7 +10,7 @@ public class Goal : MonoBehaviour
     void OnTriggerEnter( Collider other)
     {
         Projectile proj = other.GetComponent<Projectile>();
-        if (proj != null)
+        if ( (proj != null) && (proj.tracer == false) )
         {
             Goal.goalMet = true;
             Material mat = GetComponent<Renderer>().material;
