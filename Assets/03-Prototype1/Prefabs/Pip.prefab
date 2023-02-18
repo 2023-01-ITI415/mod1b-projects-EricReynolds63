@@ -127,4 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae58eaaa4dca6140acf970e6bda0631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decay: 7
+  decay: 3
