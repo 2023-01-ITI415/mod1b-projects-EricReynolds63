@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipController : MonoBehaviour
+public class Pip : MonoBehaviour
 {
 	[Header("Inscribed")]
 	public float decay = 7f;
