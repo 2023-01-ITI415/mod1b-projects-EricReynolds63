@@ -12,7 +12,7 @@ public class Ghost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		
+		GameController.addGhost(gameObject);
         rb = GetComponent<Rigidbody>();
 		Vector2 move = new Vector2();
 		switch (rot) {
@@ -47,6 +47,7 @@ public class Ghost : MonoBehaviour
     {
 		//If the ghost gets too far from the maze, despawn
         if ( (Mathf.Abs(transform.position.x) > despawn) || (Mathf.Abs(transform.position.z) > despawn) ) {
+			GameController.cullGhost(gameObject);
 			Destroy(gameObject);
 		}
     }

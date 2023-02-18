@@ -10,6 +10,7 @@ public class ArenaController : MonoBehaviour
 	[Header("Inscribed")]
 	public GameObject pipPrefab;
 	public GameObject ghostPrefab;
+	
 	public float pipDropDelay = 1f;
 	public float ghostDelay = 1f;
 	public float arenaX = 30f;
