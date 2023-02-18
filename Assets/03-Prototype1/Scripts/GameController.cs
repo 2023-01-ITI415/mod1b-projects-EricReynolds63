@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 
 	[Header("Dynamic")]
 	public int lives = 0;
+	public int score = 0;
 
 	// Start is called before the first frame update
 	void Start()
@@ -74,5 +75,14 @@ public class GameController : MonoBehaviour
 	//Allows other objects to remove of pips from list
 	static public void cullGhost(GameObject ghost) {
 		master.allGhosts.Remove(ghost);
+	}
+
+	//Allows other objects to get points for pips
+	static public void eatPip(GameObject pip, int value) {
+		//increment score
+		master.score += value;
+		//delete pip
+		cullPip(pip);
+		Destroy(pip);
 	}
 }

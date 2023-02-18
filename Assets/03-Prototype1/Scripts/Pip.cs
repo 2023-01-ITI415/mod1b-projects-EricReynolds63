@@ -6,6 +6,7 @@ public class Pip : MonoBehaviour
 {
 	[Header("Inscribed")]
 	public float decay = 7f;
+	public int value = 100;
 
     // Start is called before the first frame update
     void Start()

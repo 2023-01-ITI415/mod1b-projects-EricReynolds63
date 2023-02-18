@@ -33,4 +33,16 @@ public class PlayerController : MonoBehaviour
 		rb.AddForce(movement * speed);
 	}
 
+	private void OnCollisionEnter(Collision collision)
+	{
+		// Pip Case
+			GameObject other = collision.gameObject;
+			 Pip pip = other.GetComponent<Pip>();
+			if (pip != null)  { 
+				GameController.eatPip(other, pip.value);
+			}
+		// Ghost Case
+
+	}
+
 }

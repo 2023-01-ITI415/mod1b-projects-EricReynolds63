@@ -888,6 +888,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1126663930}
+  allPips: []
+  allGhosts: []
+  maxLives: 3
+  lives: 0
 --- !u!4 &1440053342
 Transform:
   m_ObjectHideFlags: 0
