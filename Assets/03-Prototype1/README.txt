@@ -29,13 +29,26 @@
 		Ghost
 			-Spawns just beyond edge of arena, moves in a straight line
 
+		FRAMEWORK ANALYSIS-
+		Inscribed
+			Aesthetics - Models meant to evoke the idea of pacman
+			Mechanics - Traversing the maze avoiding ghosts and collecting pips
+			Narrative - Not really much here, but I guess the player is traversing floors of a haunted house
+			Technology - Using mostly stuff we already learned in Unity
+		Dynamic
+			Aesthetics - The way the ghosts appear, disappear and phase through walls
+			Mechanics - Skillful use of the bump mechanic to avoid danger and collect more pips
+			Narrative - Players may feel like the ghosts are targeting them if a lot spawn near them at once
+			Technology - Random locations of ghosts and pips
+		Cultural
+			Society hasn't really interacted with my game at all, but I can imagine that players would come up
+			with 'optimal strategies' and might enjoy the generally retro influences of pacman and pinball
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		v Delete before final build v 
 
 		TO DO -
-		-Make Ghosts cause lives to be lost
-		-Ghost trails (refer to mission demolition projectiles)
 		-UI (Lives, Score)
 		-Shake/Bump (Fling player and Pips into air with random X/Z 'drift', has cooldown)
 		-More Arenas (Different Controller instances, Special Pips)

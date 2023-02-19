@@ -354,6 +354,7 @@ MonoBehaviour:
   arena: {fileID: 104447873}
   pipPrefab: {fileID: 5496771838316332829, guid: ecfa5eaac2471214eb7210bf9c3afe1d, type: 3}
   ghostPrefab: {fileID: 3719637968068158480, guid: bb80cc7ebc43efc4cbbe20fd7f4ed210, type: 3}
+  ghostTrailPrefab: {fileID: 1823849047062490721, guid: f67cc39f3e59cff4696c21dbb29a8b58, type: 3}
   pipDropDelay: 1
   ghostDelay: 0.5
   arenaX: 30

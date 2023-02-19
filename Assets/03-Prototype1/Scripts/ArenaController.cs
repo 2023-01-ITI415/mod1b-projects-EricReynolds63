@@ -10,6 +10,7 @@ public class ArenaController : MonoBehaviour
 	[Header("Inscribed")]
 	public GameObject pipPrefab;
 	public GameObject ghostPrefab;
+	public GameObject ghostTrailPrefab;
 	
 	public float pipDropDelay = 1f;
 	public float ghostDelay = 1f;
@@ -82,6 +83,7 @@ public class ArenaController : MonoBehaviour
 
 		
 		ghost = Instantiate<GameObject>(ghostPrefab);
+		Instantiate<GameObject>(ghostTrailPrefab, ghost.transform);
 		ghost.transform.position = pos;
 		ghost.transform.Rotate(0,0,rot);
 		ghost.GetComponent<Ghost>().rot = rot;
