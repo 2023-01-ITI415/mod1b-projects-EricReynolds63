@@ -80,7 +80,6 @@ public class ArenaController : MonoBehaviour
 			break;
 
 		}
-
 		
 		ghost = Instantiate<GameObject>(ghostPrefab);
 		Instantiate<GameObject>(ghostTrailPrefab, ghost.transform);

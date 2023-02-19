@@ -45,4 +45,8 @@ public class PlayerController : MonoBehaviour
 
 	}
 
+	void OnFire() {
+		GameController.bump(gameObject);
+	}
+
 }

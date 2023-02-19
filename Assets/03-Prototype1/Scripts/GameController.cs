@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
 
 	[Header("Inscribed")]
 	public int maxLives = 3;
+	public float bumpSpeed = 3.5f;
+	public bool bumpCD = true;
 
 	[Header("Dynamic")]
 	public int lives = 0;
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
     {
 		master = this;
         lives = maxLives;
+		Invoke("bumpRefresh", 3f);
     }
 
     // Update is called once per frame
@@ -33,6 +36,26 @@ public class GameController : MonoBehaviour
 			arenaReset();
 		}
     }
+
+	// BUMP/SHAKE METHOD
+	public static void bump(GameObject player) {
+		if (master.bumpCD == false) {
+			Vector3 bump = Vector3.zero;
+			bump.x = Random.Range(-50, 50);
+			bump.y = 100 * master.bumpSpeed;
+			bump.z = Random.Range(-50, 50);
+			player.GetComponent<Rigidbody>().AddForce(bump);
+			foreach (GameObject pip in master.allPips) {
+				pip.GetComponent<Rigidbody>().AddForce(bump);
+			}
+			master.bumpCD = true;
+			master.Invoke("bumpRefresh", 3f);
+		}
+	}
+
+	void bumpRefresh() {
+		bumpCD = false;
+	}
 
 	void arenaReset() {
 		if (lives > 1) {
@@ -48,10 +71,12 @@ public class GameController : MonoBehaviour
 			foreach (GameObject pip in allPips) {
 				Destroy(pip);
 			}
+			allPips.Clear();
 			//Remove ghosts
 			foreach (GameObject ghost in allGhosts) {
 				Destroy(ghost);
 			}
+			allGhosts.Clear();
 		} else {
 			gameReset();
 		}

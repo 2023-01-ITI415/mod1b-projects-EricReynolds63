@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a412c761c27ca4d90fb3a365e3090d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decay: 7
+  decay: 10
   value: 10
