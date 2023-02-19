@@ -51,4 +51,13 @@ public class Ghost : MonoBehaviour
 			Destroy(gameObject);
 		}
     }
+
+	private void OnTriggerEnter(Collider other)
+	{
+		PlayerController player = other.GetComponent<PlayerController>();
+		if (player != null)  { 
+			player.dead = true;
+		}
+	}
+
 }

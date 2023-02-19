@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 	public float speed = 0;
+	public bool dead = false;
 
 	private Rigidbody rb;
 
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		dead = false;
 		rb = GetComponent<Rigidbody>();
 	}
 
@@ -35,13 +37,11 @@ public class PlayerController : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		// Pip Case
-			GameObject other = collision.gameObject;
-			 Pip pip = other.GetComponent<Pip>();
-			if (pip != null)  { 
-				GameController.eatPip(other, pip.value);
-			}
-		// Ghost Case
+		GameObject other = collision.gameObject;
+			Pip pip = other.GetComponent<Pip>();
+		if (pip != null)  { 
+			GameController.eatPip(other, pip.value);
+		}
 
 	}
 

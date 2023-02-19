@@ -355,7 +355,7 @@ MonoBehaviour:
   pipPrefab: {fileID: 5496771838316332829, guid: ecfa5eaac2471214eb7210bf9c3afe1d, type: 3}
   ghostPrefab: {fileID: 3719637968068158480, guid: bb80cc7ebc43efc4cbbe20fd7f4ed210, type: 3}
   pipDropDelay: 1
-  ghostDelay: 1
+  ghostDelay: 0.5
   arenaX: 30
   arenaY: 20
 --- !u!1 &792234105
@@ -642,6 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
+  dead: 0
 --- !u!114 &1126663937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +893,7 @@ MonoBehaviour:
   allGhosts: []
   maxLives: 3
   lives: 0
+  score: 0
 --- !u!4 &1440053342
 Transform:
   m_ObjectHideFlags: 0

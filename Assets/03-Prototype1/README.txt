@@ -28,3 +28,17 @@
 			-Deleted if it falls off the arena
 		Ghost
 			-Spawns just beyond edge of arena, moves in a straight line
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		v Delete before final build v 
+
+		TO DO -
+		-Make Ghosts cause lives to be lost
+		-Ghost trails (refer to mission demolition projectiles)
+		-UI (Lives, Score)
+		-Shake/Bump (Fling player and Pips into air with random X/Z 'drift', has cooldown)
+		-More Arenas (Different Controller instances, Special Pips)
+
+		Maybe Implement
+		-Game Over/Highscore Leaderboard Screen
