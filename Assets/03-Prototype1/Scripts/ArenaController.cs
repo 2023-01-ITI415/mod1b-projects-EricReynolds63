@@ -17,9 +17,11 @@ public class ArenaController : MonoBehaviour
 	public float arenaX = 30f;
 	public float arenaY = 20f;
 	public int levelNum = 0;
+	public int offset = 0;
 
 	[Header("Dynamic")]
 	public bool active = true;
+	public bool resetTrig = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -27,6 +29,15 @@ public class ArenaController : MonoBehaviour
 		//Start Dropping Pips
 		Invoke("DropPip", 3f);
 		Invoke("SpawnGhost", 3f);
+		if (levelNum == 0) {
+			offset = 0;
+		}
+		if (levelNum == 1) {
+			offset = 60;
+		}
+		if (levelNum == 2) {
+			offset = 120;
+		}
 
 		//Correct Trigger Zone
 		Vector3 box = Vector3.one;
@@ -41,14 +52,18 @@ public class ArenaController : MonoBehaviour
     void Update()
     {
 		// If player is not in trigger zone, stop dropping pips and spawning ghosts
-        if (	player.transform.position.x > (arenaX / 2) || player.transform.position.x < -(arenaX / 2) ||
-				player.transform.position.z > (arenaY / 2) || player.transform.position.z < -(arenaY / 2)
+        if (	player.transform.position.x > (arenaX / 2) + offset || player.transform.position.x < -(arenaX / 2) + offset  ||
+				player.transform.position.z > (arenaY / 2)  || player.transform.position.z < -(arenaY / 2)
 			)	{
 					active = false;
+					resetTrig = true;
 				} else {
 					active = true;
-					Invoke("DropPip", pipDropDelay);
-					Invoke("SpawnGhost", ghostDelay);
+					if (resetTrig == true) {
+						Invoke("DropPip", pipDropDelay);
+						Invoke("SpawnGhost", ghostDelay);
+						resetTrig = false;
+					}
 				}
     }
 
@@ -106,6 +121,7 @@ public class ArenaController : MonoBehaviour
 			}
 		
 			ghost = Instantiate<GameObject>(ghostPrefab);
+			ghost.GetComponent<Ghost>().despawn += offset;
 			Instantiate<GameObject>(ghostTrailPrefab, ghost.transform);
 			ghost.transform.position = pos;
 			ghost.transform.Rotate(0,0,rot);

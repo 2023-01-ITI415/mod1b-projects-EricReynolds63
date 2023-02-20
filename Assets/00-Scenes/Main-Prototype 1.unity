@@ -1190,6 +1190,7 @@ MonoBehaviour:
   player: {fileID: 1126663930}
   allPips: []
   allGhosts: []
+  arenaControllerPrefab: {fileID: 3527173660964617362, guid: 83a078b5e4046b64a9e3b8461f83910e, type: 3}
   arenaTwoPrefab: {fileID: 4908819449885151406, guid: dd892041fbe16434aa10f1eb134d22e9, type: 3}
   arenaThreePrefab: {fileID: 4908819449885151406, guid: dd892041fbe16434aa10f1eb134d22e9, type: 3}
   maxLives: 3

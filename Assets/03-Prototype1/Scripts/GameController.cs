@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 	public List<GameObject> allPips = new List<GameObject>();
 	public List<GameObject> allGhosts = new List<GameObject>();
 	//public GameObject arenaOnePrefab;
+	public GameObject arenaControllerPrefab;
 	public GameObject arenaTwoPrefab;
 	public GameObject arenaThreePrefab;
 
@@ -52,7 +53,17 @@ public class GameController : MonoBehaviour
 			Vector3 LevTwo = Vector3.zero;
 			LevTwo.x = 60;
 			GameObject areaTwo = Instantiate<GameObject>(arenaTwoPrefab);
+				GameObject ACTwo = Instantiate<GameObject>(arenaControllerPrefab);
+				ArenaController ACT = ACTwo.GetComponent<ArenaController>();
+				//ACT.ghostDelay = 0.75f;
+				ACT.levelNum = 1;
+				ACT.player = player;
+				ACT.arena = areaTwo;
+				ACT.arenaX = 40;
+				ACT.active = true;
 			areaTwo.transform.position = LevTwo;
+				LevTwo.y = 15;
+				ACTwo.transform.position = LevTwo;
 			Invoke("resetGoTime", 20f);
 		}
 		if ( score == 500 && areaTwoUnlocked == false ) {
@@ -103,6 +114,8 @@ public class GameController : MonoBehaviour
 			//Put player back
 			Vector3 origin = Vector3.zero;
 			origin.y = 1;
+				//Account for which level
+				if (areaOneUnlocked) { origin.x = 60; origin.y += 2; }
 			player.GetComponent<PlayerController>().dead = false;
 			player.transform.position = origin;
 			//Remove pips
