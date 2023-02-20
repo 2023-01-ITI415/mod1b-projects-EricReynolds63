@@ -49,9 +49,6 @@
 		v Delete before final build v 
 
 		TO DO -
-		-Shake/Bump (Fling player and Pips into air with random X/Z 'drift', has cooldown)
 		-UI (Lives, Score)
 		-More Arenas (Different Controller instances, Special Pips)
-
-		Maybe Implement
 		-Game Over/Highscore Leaderboard Screen

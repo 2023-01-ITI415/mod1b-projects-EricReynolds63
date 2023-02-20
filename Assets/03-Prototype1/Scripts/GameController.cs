@@ -19,6 +19,12 @@ public class GameController : MonoBehaviour
 	[Header("Dynamic")]
 	public int lives = 0;
 	public int score = 0;
+	public bool areaUnlock = false;
+
+	//Level Control
+	private bool areaOneUnlocked = false;
+	private bool areaTwoUnlocked = false;
+	private bool areaThreeUnlocked = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -35,7 +41,33 @@ public class GameController : MonoBehaviour
         if ( (player.transform.position.y < -5) || (player.GetComponent<PlayerController>().dead) ) {
 			arenaReset();
 		}
+
+		// NEXT AREA SPAWN SCRIPT
+		if ( score == 100 && areaOneUnlocked == false ) {
+			areaOneUnlocked = true;
+			goTime();
+			Invoke("resetGoTime", 20f);
+		}
+		if ( score == 500 && areaTwoUnlocked == false ) {
+			areaTwoUnlocked = true;
+			goTime();
+			Invoke("resetGoTime", 20f);
+		}
+		if ( score == 2000 && areaThreeUnlocked == false ) {
+			areaThreeUnlocked = true;
+			goTime();
+			Invoke("resetGoTime", 20f);
+		}
+
     }
+
+	void goTime() {
+		areaUnlock = true;
+	}
+
+	void resetGoTime() {
+		areaUnlock = false;
+	}
 
 	// BUMP/SHAKE METHOD
 	public static void bump(GameObject player) {
@@ -61,7 +93,6 @@ public class GameController : MonoBehaviour
 		if (lives > 1) {
 			//Remove a life
 			lives -= 1;
-			Debug.Log("Lost a life, " + lives + " remain.");
 			//Put player back
 			Vector3 origin = Vector3.zero;
 			origin.y = 1;
