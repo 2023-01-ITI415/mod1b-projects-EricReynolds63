@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
 	public GameObject player;
 	public List<GameObject> allPips = new List<GameObject>();
 	public List<GameObject> allGhosts = new List<GameObject>();
+	//public GameObject arenaOnePrefab;
+	public GameObject arenaTwoPrefab;
+	public GameObject arenaThreePrefab;
 
 	[Header("Inscribed")]
 	public int maxLives = 3;
@@ -46,6 +49,10 @@ public class GameController : MonoBehaviour
 		if ( score == 100 && areaOneUnlocked == false ) {
 			areaOneUnlocked = true;
 			goTime();
+			Vector3 LevTwo = Vector3.zero;
+			LevTwo.x = 60;
+			GameObject areaTwo = Instantiate<GameObject>(arenaTwoPrefab);
+			areaTwo.transform.position = LevTwo;
 			Invoke("resetGoTime", 20f);
 		}
 		if ( score == 500 && areaTwoUnlocked == false ) {
