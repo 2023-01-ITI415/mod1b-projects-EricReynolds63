@@ -8,7 +8,9 @@ public class ArenaController : MonoBehaviour
 	public GameObject arena;
 
 	[Header("Inscribed")]
-	public GameObject pipPrefab;
+	public GameObject pipPrefabA;
+	public GameObject pipPrefabB;
+	public GameObject pipPrefabC;
 	public GameObject ghostPrefab;
 	public GameObject ghostTrailPrefab;
 	
@@ -75,8 +77,21 @@ public class ArenaController : MonoBehaviour
 				pos.z = transform.position.z + Random.Range(-(arenaY/2), (arenaY/2));
 				pos.x = transform.position.x + Random.Range(-(arenaX/2), (arenaX/2));
 				pos.y = 10;
-			pip = Instantiate<GameObject>(pipPrefab);
+			if (levelNum == 0) {
+				pip = Instantiate<GameObject>(pipPrefabA);
 				pip.transform.position = pos;
+				pip.GetComponent<Pip>().value = 10;
+			}
+			if (levelNum == 1) {
+				pip = Instantiate<GameObject>(pipPrefabB);
+				pip.transform.position = pos;
+				pip.GetComponent<Pip>().value = 30;
+			}
+			if (levelNum == 2) {
+				pip = Instantiate<GameObject>(pipPrefabC);
+				pip.transform.position = pos;
+				pip.GetComponent<Pip>().value = 50;
+			}
 			Invoke("DropPip", pipDropDelay);
 		}
 	}
@@ -91,6 +106,9 @@ public class ArenaController : MonoBehaviour
 			int rot = 0;
 		
 			pos.y = 1;
+			if (levelNum == 2) {
+				pos.y += Random.Range(-2, 4);
+			}
 
 			switch (side) {
 

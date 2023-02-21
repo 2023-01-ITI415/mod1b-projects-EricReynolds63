@@ -24,11 +24,12 @@ public class GameController : MonoBehaviour
 	public int lives = 0;
 	public int score = 0;
 	public bool areaUnlock = false;
+	public bool winner = false;
 
 	//Level Control
 	private bool areaOneUnlocked = false;
 	private bool areaTwoUnlocked = false;
-	private bool areaThreeUnlocked = false;
+	//private bool areaThreeUnlocked = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -41,13 +42,20 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// No more ghosts if the game is over
+		if (winner == true) {
+			foreach (GameObject ghost in allGhosts) {
+				Destroy(ghost);
+			}
+			allGhosts.Clear();
+		}
 		// If player has fallen off the map or touched a ghost, reset
         if ( (player.transform.position.y < -5) || (player.GetComponent<PlayerController>().dead) ) {
 			arenaReset();
 		}
 
 		// NEXT AREA SPAWN SCRIPT
-		if ( score == 100 && areaOneUnlocked == false ) {
+		if ( score >= 100 && areaOneUnlocked == false ) {
 			areaOneUnlocked = true;
 			goTime();
 			Vector3 LevTwo = Vector3.zero;
@@ -61,20 +69,39 @@ public class GameController : MonoBehaviour
 				ACT.arena = areaTwo;
 				ACT.arenaX = 40;
 				ACT.active = true;
+				ACT.pipDropDelay = 0.8f;
+				ACT.ghostDelay = 0.8f;
 			areaTwo.transform.position = LevTwo;
 				LevTwo.y = 15;
 				ACTwo.transform.position = LevTwo;
 			Invoke("resetGoTime", 20f);
 		}
-		if ( score == 500 && areaTwoUnlocked == false ) {
+		if ( score >= 500 && areaTwoUnlocked == false ) {
 			areaTwoUnlocked = true;
 			goTime();
+			Vector3 LevThree = Vector3.zero;
+			LevThree.x = 120;
+			GameObject areaThree = Instantiate<GameObject>(arenaThreePrefab);
+				GameObject ACThree = Instantiate<GameObject>(arenaControllerPrefab);
+				ArenaController ACT = ACThree.GetComponent<ArenaController>();
+				//ACT.ghostDelay = 0.75f;
+				ACT.levelNum = 2;
+				ACT.player = player;
+				ACT.arena = areaThree;
+				ACT.arenaX = 40;
+				ACT.active = true;
+				ACT.pipDropDelay = 0.5f;
+				ACT.ghostDelay = 0.3f;
+			areaThree.transform.position = LevThree;
+				LevThree.y = 15;
+				ACThree.transform.position = LevThree;
 			Invoke("resetGoTime", 20f);
 		}
-		if ( score == 2000 && areaThreeUnlocked == false ) {
-			areaThreeUnlocked = true;
-			goTime();
-			Invoke("resetGoTime", 20f);
+		if ( score >= 2000) { //&& areaThreeUnlocked == false ) {
+			//areaThreeUnlocked = true;
+			//goTime();
+			//Invoke("resetGoTime", 20f);
+			winner = true;
 		}
 
     }
@@ -116,6 +143,7 @@ public class GameController : MonoBehaviour
 			origin.y = 1;
 				//Account for which level
 				if (areaOneUnlocked) { origin.x = 60; origin.y += 2; }
+				if (areaTwoUnlocked) { origin.x = 120; origin.y += 1; }
 			player.GetComponent<PlayerController>().dead = false;
 			player.transform.position = origin;
 			//Remove pips

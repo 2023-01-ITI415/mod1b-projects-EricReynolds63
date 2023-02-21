@@ -2,11 +2,18 @@
 	Prototype 1 - Ghost Maze
 	
 	Loosely based on Pacman and Monkey Ball
+
+	HOW TO PLAY:
+		WASD/Mouse Keys to Move
+		Mouse Click to "TILT" (flings ball and pips into the air)
 	
 	Gameplay Loop:
 		-Player dodges ghosts while collecting 'pips' for points as they rain down from the sky
 		-At certain score thresholds, a bridge appears to the next arena
 		-Each arena has associated pips worth more points, but harder terrain and more ghosts
+			Level 1 - 100 points to clear
+			Level 2 - 500 points to clear
+			Level 3 (BOSS) - 2000 points to clear
 	
 	Components:
 		Game Controller
@@ -43,12 +50,3 @@
 		Cultural
 			Society hasn't really interacted with my game at all, but I can imagine that players would come up
 			with 'optimal strategies' and might enjoy the generally retro influences of pacman and pinball
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		v Delete before final build v 
-
-		TO DO -
-		-UI (Lives, Score)
-		-More Arenas (Different Controller instances, Special Pips)
-		-Game Over/Highscore Leaderboard Screen
